@@ -10,6 +10,7 @@ const sounds = {
 const scriptLink = document.getElementById("script-link");
 const convertedOutput = document.getElementById("converted-output");
 const scriptMaker = document.getElementById("script-maker");
+const highlightedCode = document.getElementById("highlighted-code");
 
 const convertBtn = document.getElementById("convert-btn");
 const copyBtn = document.getElementById("copy-btn");
@@ -23,6 +24,7 @@ convertBtn.addEventListener("click", () => {
     const loadstring = `loadstring(game:HttpGet("${link}"))()`;
     convertedOutput.value = loadstring;
     playSound("convert");
+    buttonFeedback(copyBtn, "Copy"); // Reset copy text if changed
   }
 });
 
@@ -31,14 +33,21 @@ copyBtn.addEventListener("click", () => {
   if (convertedOutput.value) {
     navigator.clipboard.writeText(convertedOutput.value);
     playSound("copy");
+    buttonFeedback(copyBtn, "Copy");
   }
 });
 
-// === Script Maker (Test) ===
+// === Script Maker (Highlight + Copy) ===
+scriptMaker.addEventListener("input", () => {
+  highlightedCode.textContent = scriptMaker.value;
+  Prism.highlightElement(highlightedCode);
+});
+
 testBtn.addEventListener("click", () => {
   if (scriptMaker.value.trim()) {
     navigator.clipboard.writeText(scriptMaker.value.trim());
     playSound("test");
+    buttonFeedback(testBtn, "Test (Copy Script)");
   }
 });
 
@@ -47,6 +56,15 @@ advancedBtn.addEventListener("click", () => {
   playSound("advanced");
   window.open("https://example.com/advanced", "_blank");
 });
+
+// === Button Feedback (Copied!) ===
+function buttonFeedback(button, originalText) {
+  const oldText = button.textContent;
+  button.textContent = "Copied!";
+  setTimeout(() => {
+    button.textContent = originalText;
+  }, 2000);
+}
 
 // === Play Sound Helper ===
 function playSound(type) {
@@ -83,6 +101,24 @@ function createParticles() {
     });
   }
 }
+
+function drawParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "white";
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+    p.x += p.dx;
+    p.y += p.dy;
+
+    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+  });
+  requestAnimationFrame(drawParticles);
+}
+
+drawParticles();
 
 function drawParticles() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
