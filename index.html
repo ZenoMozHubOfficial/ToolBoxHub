@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZenoMoz Hub</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="particles"></canvas>
+
+  <div class="container">
+    <h1 class="title">loadstring converter</h1>
+
+    <textarea id="script-link" placeholder="Paste script link here..."></textarea>
+    <div class="btn-row">
+      <button id="convert-btn">Convert</button>
+      <button id="copy-btn">Copy</button>
+    </div>
+    <textarea id="converted-output" placeholder="Converted loadstring will appear here..." readonly></textarea>
+
+    <h1 class="title">script maker</h1>
+    <textarea id="script-maker" placeholder="Write your Lua script here..."></textarea>
+    <div class="btn-row">
+      <button id="test-btn">Test (Copy Script)</button>
+      <button id="advanced-btn">Advanced</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
