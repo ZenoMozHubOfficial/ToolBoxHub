@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ZenoMoz Hub</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Prism.js for code highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
 </head>
 <body>
   <canvas id="particles"></canvas>
@@ -20,13 +22,21 @@
     <textarea id="converted-output" placeholder="Converted loadstring will appear here..." readonly></textarea>
 
     <h1 class="title">script maker</h1>
+
+    <!-- Hidden textarea for input -->
     <textarea id="script-maker" placeholder="Write your Lua script here..."></textarea>
+    <!-- Highlighted output -->
+    <pre id="highlight-box"><code id="highlighted-code" class="language-lua"></code></pre>
+
     <div class="btn-row">
       <button id="test-btn">Test (Copy Script)</button>
       <button id="advanced-btn">Advanced</button>
     </div>
   </div>
 
+  <!-- Prism.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-lua.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
