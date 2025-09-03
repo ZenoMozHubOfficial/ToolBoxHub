@@ -45,7 +45,7 @@ testBtn.addEventListener("click", () => {
 // === Advanced (link redirect) ===
 advancedBtn.addEventListener("click", () => {
   playSound("advanced");
-  window.open("https://example.com/advanced", "_blank");
+  window.open("https://scripts-seven-beige.vercel.app/", "_blank");
 });
 
 // === Play Sound Helper ===
